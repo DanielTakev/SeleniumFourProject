@@ -3,33 +3,22 @@ package tests;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableList;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.commons.io.FileUtils;
-import org.checkerframework.dataflow.qual.TerminatesExecution;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.Command;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.cachestorage.model.Header;
-import org.openqa.selenium.devtools.console.Console;
-import org.openqa.selenium.devtools.fetch.Fetch;
 import org.openqa.selenium.devtools.network.Network;
-import org.openqa.selenium.devtools.log.Log;
 import org.openqa.selenium.devtools.network.model.*;
-import org.openqa.selenium.devtools.page.Page;
-import org.openqa.selenium.devtools.runtime.Runtime;
 import org.openqa.selenium.devtools.security.Security;
 import org.openqa.selenium.support.locators.RelativeLocator;
 import org.testng.annotations.*;
 import pages.GovernmentBgPage;
 import static org.junit.Assert.*;
 import static org.openqa.selenium.devtools.network.Network.loadingFailed;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+
 
 public class Tests {
 
@@ -58,13 +47,14 @@ public class Tests {
     }
 
     @Test
-    public void getScreenshotTest() {
+    public void getScreenshotTest() throws InterruptedException {
 
         String screenshotElementName = "covidScreenshot";
         String screenshotSectionName = "headerContentScreenshot";
 
         governmentBgPage.getScreenshot(screenshotElementName);
         governmentBgPage.getScreenshot(screenshotSectionName);
+        Thread.sleep(2000);
     }
 
     @Test
