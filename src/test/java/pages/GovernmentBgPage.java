@@ -18,7 +18,6 @@ public class GovernmentBgPage {
 
         element = driver.findElement(By.cssSelector((".header-content .covid19")));
         elementSection = driver.findElement(By.cssSelector((".header-content")));
-        WebElement sds = driver.findElement(By.id("ds"));
     }
 
 
