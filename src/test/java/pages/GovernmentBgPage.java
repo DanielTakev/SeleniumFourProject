@@ -4,7 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import java.io.File;
 import java.io.IOException;
-import org.openqa.selenium.WindowType;
+
 
 public class GovernmentBgPage {
 
@@ -13,14 +13,17 @@ public class GovernmentBgPage {
     WebElement elementSection;
 
     public GovernmentBgPage(WebDriver driver) {
+
         this.driver = driver;
 
         element = driver.findElement(By.cssSelector((".header-content .covid19")));
         elementSection = driver.findElement(By.cssSelector((".header-content")));
+        WebElement sds = driver.findElement(By.id("ds"));
     }
 
 
     public void getScreenshot(String fileName) {
+
         File screenshotElement = element.getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(screenshotElement, new File("./screenshots/" + fileName + ".jpg"));
@@ -31,6 +34,7 @@ public class GovernmentBgPage {
     }
 
     public void getRect() {
+
         Rectangle rect = element.getRect();
         System.out.println("Element height is: " + rect.getHeight());
         System.out.println("Element width is: " + rect.getWidth());
