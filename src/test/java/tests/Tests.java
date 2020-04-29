@@ -16,7 +16,11 @@ import org.testng.annotations.*;
 import pages.GovernmentBgPage;
 import static org.junit.Assert.*;
 import static org.openqa.selenium.devtools.network.Network.loadingFailed;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 
@@ -71,14 +75,38 @@ public class Tests {
         Thread.sleep(2000);
         driver.get("https://google.com");
         Thread.sleep(2000);
+        driver.close();
+        Thread.sleep(1000);
     }
 
     @Test
     public void switchNewWindowTest() throws InterruptedException {
 
+        System.out.println("Before switching the title is: " + driver.getTitle());
+        Thread.sleep(1000);
         driver.switchTo().newWindow(WindowType.WINDOW);
+
+        Set<String> handles = driver.getWindowHandles();
+        List<String> myWindowsList = new ArrayList<>(handles);
+
+        String parentWindowId = myWindowsList.get(0);
+        String childWindowId = myWindowsList.get(1);
+
+        System.out.println(parentWindowId);
+        System.out.println(childWindowId);
+
         Thread.sleep(2000);
         driver.get("https://bing.com");
+
+        Dimension dimension = new Dimension(800,480);
+        driver.manage().window().setSize(dimension);
+        Thread.sleep(1000);
+        System.out.println("After switching the title is: " + driver.getTitle());
+
+        Thread.sleep(1000);
+        driver.switchTo().window(parentWindowId);
+
+        System.out.println("After second switching the title is: " + driver.getTitle());
         Thread.sleep(2000);
     }
 
