@@ -20,7 +20,6 @@ public class GovernmentBgPage {
         elementSection = driver.findElement(By.cssSelector((".header-content")));
     }
 
-
     public void getScreenshot(String fileName) {
 
         File screenshotElement = element.getScreenshotAs(OutputType.FILE);
@@ -41,5 +40,4 @@ public class GovernmentBgPage {
         System.out.println("Element Y location (vertical) is: " + rect.getY());
         System.out.println("Element dimensions are: " + rect.getDimension());
     }
-
 }

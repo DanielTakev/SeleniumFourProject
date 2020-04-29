@@ -196,7 +196,7 @@ public class Tests {
         // Set ignore certificate errors
         devTools.send(Security.setIgnoreCertificateErrors(true));
 
-        //load insecure website
+        // Load insecure website
         driver.get("https://expired.badssl.com/");
 
         // Verify that the page was loaded
