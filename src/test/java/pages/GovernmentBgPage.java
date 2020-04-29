@@ -37,8 +37,8 @@ public class GovernmentBgPage {
         Rectangle rect = element.getRect();
         System.out.println("Element height is: " + rect.getHeight());
         System.out.println("Element width is: " + rect.getWidth());
-        System.out.println("Element X location is: " + rect.getX());
-        System.out.println("Element Y location is: " + rect.getY());
+        System.out.println("Element X location (horizontal) is: " + rect.getX());
+        System.out.println("Element Y location (vertical) is: " + rect.getY());
         System.out.println("Element dimensions are: " + rect.getDimension());
     }
 

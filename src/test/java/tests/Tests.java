@@ -100,8 +100,9 @@ public class Tests {
 
         Dimension dimension = new Dimension(800,480);
         driver.manage().window().setSize(dimension);
-        Thread.sleep(1000);
-        System.out.println("After switching the title is: " + driver.getTitle());
+        Thread.sleep(3000);
+
+        System.out.println("After switching the title of the new browser window is: " + driver.getTitle());
 
         Thread.sleep(1000);
         driver.switchTo().window(parentWindowId);
@@ -135,7 +136,7 @@ public class Tests {
 
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("window.scrollBy(0,630)", "");
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         driver.findElement(RelativeLocator.withTagName("span")
                 .toRightOf(By.cssSelector(".view-more-btn.gtm-hp-vmbtn-serv"))
@@ -149,12 +150,16 @@ public class Tests {
     @Test
     public void devToolsNetworkOfflineTest() throws InterruptedException {
 
+        // Send a request to enable the Network - first parameter is maxTotalBufferSize, the second and the third are optional
         devTools.send(Network.enable(Optional.of(1000000), Optional.empty(), Optional.empty()));
-        devTools.send(Network.emulateNetworkConditions(true, 100, 1000, 2000, Optional.of(ConnectionType.WIFI)));
+        // Send Network conditions - offline: true, latency: 100, download throughput: 1000, upload throughput: 2000, connection type: wifi(your connection type)
+        devTools.send(Network.emulateNetworkConditions(true, 100, 0, 0, Optional.of(ConnectionType.WIFI)));
+        // Add listener to listen for particular response
         devTools.addListener(loadingFailed(), loadingFailed -> assertEquals(loadingFailed.getErrorText(), "net::ERR_INTERNET_DISCONNECTED"));
-
         Thread.sleep(2000);
+
         driver.get("https://bing.com");
+        Thread.sleep(2000);
     }
 
     @Test
