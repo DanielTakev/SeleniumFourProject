@@ -43,7 +43,7 @@ public class DevToolsTests {
     @AfterMethod
     public void teardown() {
         // Delete browser session
-        driver.quit();
+        // driver.quit();
     }
 
     // DEV TOOLS TESTS
@@ -103,6 +103,10 @@ public class DevToolsTests {
     public void genericCommandBrowserCloseTest() {
         // Generic browser command to close the browser
         // More info at: https://vanilla.aslushnikov.com/?Browser
-        devTools.send(new Command<>("Browser.close", ImmutableMap.of()));
+        try {
+            devTools.send(new Command<>("Browser.close", ImmutableMap.of()));
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
     }
 }
